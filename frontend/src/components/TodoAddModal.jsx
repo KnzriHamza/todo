@@ -17,17 +17,10 @@ export default function TodoAddModal(props) {
     }, []);
 
     const getTodoCategories = () => {
-        axiosClient
-            .get("/todoCategories")
-
-            .then(({ data }) => {
-                console.log(data);
-
-                setTodoCategories(data.data);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        axiosClient.get("/todoCategories").then(({ data }) => {
+            console.log(data);
+            setTodoCategories(data.data);
+        });
     };
 
     const onSubmit = (ev) => {
@@ -113,18 +106,24 @@ export default function TodoAddModal(props) {
                                                 className="form-select"
                                                 name="category"
                                             >
-                                                {todoCategories.map(
-                                                    (todoCategory) => (
-                                                        <option
-                                                            value={
-                                                                todoCategory.id
-                                                            }
-                                                        >
-                                                            {
-                                                                todoCategory.categoryName
-                                                            }
-                                                        </option>
+                                                {todoCategories.length > 0 ? (
+                                                    todoCategories.map(
+                                                        (todoCategory) => (
+                                                            <option
+                                                                value={
+                                                                    todoCategory.id
+                                                                }
+                                                            >
+                                                                {
+                                                                    todoCategory.categoryName
+                                                                }
+                                                            </option>
+                                                        )
                                                     )
+                                                ) : (
+                                                    <option value="0">
+                                                        Uncategorized
+                                                    </option>
                                                 )}
                                             </select>
                                         </div>

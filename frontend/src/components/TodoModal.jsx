@@ -114,18 +114,24 @@ export default function TodoModal(props) {
                                                 name="category"
                                                 defaultValue={todo.categoryId}
                                             >
-                                                {todoCategories.map(
-                                                    (todoCategory) => (
-                                                        <option
-                                                            value={
-                                                                todoCategory.id
-                                                            }
-                                                        >
-                                                            {
-                                                                todoCategory.categoryName
-                                                            }
-                                                        </option>
+                                                {todoCategories.length > 0 ? (
+                                                    todoCategories.map(
+                                                        (todoCategory) => (
+                                                            <option
+                                                                value={
+                                                                    todoCategory.id
+                                                                }
+                                                            >
+                                                                {
+                                                                    todoCategory.categoryName
+                                                                }
+                                                            </option>
+                                                        )
                                                     )
+                                                ) : (
+                                                    <option value="0">
+                                                        Uncategorized
+                                                    </option>
                                                 )}
                                             </select>
                                         </div>
